@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  🎬 <a href="./mention.ogg"><b>▶️ 𝘾𝙡𝙞𝙘𝙠 𝙝𝙚𝙧𝙚 𝙩𝙤 𝙬𝙖𝙩𝙘𝙝 𝙩𝙝𝙚 𝙢𝙚𝙙𝙞𝙖</b></a>
+  <img src="./mention.gif" width="500">
 </p>
 
 ---
