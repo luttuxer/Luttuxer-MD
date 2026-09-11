@@ -119,7 +119,7 @@ async function startBot() {
       logger: pino({
         level: "silent"
       }),
-      printQRInTerminal: false
+      printQRInTerminal:true
     });
 
   sock.ev.on(
@@ -157,7 +157,7 @@ async function startBot() {
             "🔄 Reconnecting..."
           );
 
-          startBot();
+setTimeout(() => startBot(), 5000);
         } else {
           console.log(
             "❌ Logged out."
@@ -918,8 +918,7 @@ if (command === ".menu") {
     }
   );
 }
-
-startBot();
+setTimeout(() => startBot(), 5000);
 // =====================================
 // RENDER WEB SERVER
 // =====================================
