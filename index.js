@@ -104,7 +104,7 @@ async function addStickerMetadata(
 
   return await img.save(null);
 }
-
+const BOT_START_TIME = Date.now();
 async function startBot() {
   const {
     state,
@@ -315,6 +315,29 @@ setTimeout(() => startBot(), 5000);
     jid,
     {
       text: `*☇ ꜱᴩᷨᴇͦᴇͭᴅ 🐼 :* ${latency.toFixed(2)} *ᴍꜱ*`
+    },
+    { quoted: msg }
+  );
+
+  return;
+}
+
+// RUNTIME
+if (command === ".runtime") {
+  const totalSeconds = Math.floor(
+    (Date.now() - BOT_START_TIME) / 1000
+  );
+
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  await sock.sendMessage(
+    jid,
+    {
+      text:
+        `⏱️ *Runtime:* ${days}d ${hours}h ${minutes}m ${seconds}s`
     },
     { quoted: msg }
   );
@@ -562,6 +585,7 @@ if (command === ".menu") {
 ┃ 👀 .autostatus
 ┃ 👁️ .vv
 ┃ 📦 .repo
+┃ ⏱️ .runtime
 ┃ 📜 .menu
 ┃
 ╰══════════════════❍`;
