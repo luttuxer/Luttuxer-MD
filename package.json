@@ -1,13 +1,19 @@
 {
   "name": "luttuxer-md",
   "version": "1.0.0",
-  "description": "",
+  "description": "A powerful WhatsApp bot built with Baileys — Luttuxer MD 🤖",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "baileys",
+    "luttuxer-md",
+    "termux"
+  ],
+  "author": "Luttuxer",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
