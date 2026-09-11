@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://drive.google.com/file/d/1v7dfbc6_gU1FviuMZjvGksbwmF-dEOBX/view?usp=drivesdk">
-    <img src="https://i.ibb.co/21wCpcSN/temp.jpg" width="500">
+  <">
+    <" width="500">
   </a>
 </p><h1 align="center">𝙇𝙪𝙩𝙩𝙪𝙭𝙚𝙧 𝙈𝘿</h1><p align="center">
   <b>🤖 𝙋𝙚𝙧𝙨𝙤𝙣𝙖𝙡 𝙒𝙝𝙖𝙩𝙨𝘼𝙥𝙥 𝘽𝙤𝙩</b>
