@@ -345,6 +345,20 @@ if (command === ".runtime") {
   return;
 }
 
+// AUTO STATUS VIEW
+sock.ev.on("messages.upsert", async ({ messages }) => {
+  try {
+    const statusMsg = messages[0];
+
+    if (statusMsg?.key?.remoteJid === "status@broadcast") {
+      await sock.readMessages([statusMsg.key]);
+      console.log("👀 Status viewed automatically!");
+    }
+  } catch (err) {
+    console.log("❌ Status view error:", err.message);
+  }
+});
+
 // =====================================
 // TAGALL
 // =====================================
