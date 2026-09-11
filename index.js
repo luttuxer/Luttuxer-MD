@@ -450,6 +450,100 @@ if (command.startsWith(".setalive ")) {
   return;
 }
 
+// REPO
+if (command === ".repo") {
+  await sock.sendMessage(
+    jid,
+    {
+      text:
+        "╭━━━〔 𝙇𝙪𝙩𝙩𝙪𝙭𝙚𝙧 𝙈𝘿 〕━━━╮\n" +
+        "┃\n" +
+        "┃ 📦 Repository\n" +
+        "┃ 🔗 https://github.com/luttuxer/Luttuxer-MD\n" +
+        "┃\n" +
+        "╰━━━━━━━━━━━━━━━━━━╯"
+    },
+    {
+      quoted: msg
+    }
+  );
+
+  return;
+}
+
+// AUTO STATUS VIEW
+sock.ev.on("messages.upsert", async ({ messages }) => {
+  try {
+    const msg = messages[0];
+    if (!msg?.key?.remoteJid) return;
+
+    if (msg.key.remoteJid === "status@broadcast") {
+      await sock.readMessages([msg.key]);
+      console.log("👀 Status viewed automatically!");
+    }
+  } catch (err) {
+    console.log("❌ Status view error:", err.message);
+  }
+});
+// WHOIS
+if (command === ".whois") {
+  const quoted = message?.extendedTextMessage?.contextInfo?.participant;
+
+  if (!quoted) {
+    await sock.sendMessage(
+      jid,
+      {
+        text: "👤 Oru message reply cheythu `.whois` adikkuka."
+      },
+      { quoted: msg }
+    );
+    return;
+  }
+
+  try {
+    const name = msg.pushName || "Unknown";
+
+    let about = "Unavailable";
+    try {
+      const status = await sock.fetchStatus(quoted);
+      about = status?.status || "Unavailable";
+    } catch {}
+
+    let dp = "Unavailable";
+    try {
+      dp = await sock.profilePictureUrl(quoted, "image");
+    } catch {}
+
+    const number = quoted.split("@")[0];
+
+    await sock.sendMessage(
+      jid,
+      {
+        image: dp !== "Unavailable"
+          ? { url: dp }
+          : undefined,
+        caption:
+          `👤 *WHOIS INFO*\n\n` +
+          `┃ 🏷️ Name: ${name}\n` +
+          `┃ 📱 Number: ${number}\n` +
+          `┃ 📝 About: ${about}\n` +
+          `┃ 🖼️ DP: ${dp !== "Unavailable" ? "Available" : "Unavailable"}`
+      },
+      { quoted: msg }
+    );
+  } catch (error) {
+    console.log("❌ Whois error:", error.message);
+
+    await sock.sendMessage(
+      jid,
+      { text: "❌ Profile information edukkan pattiyilla." },
+      { quoted: msg }
+    );
+  }
+
+  return;
+}
+
        // =====================================
 // MENU
 // =====================================
@@ -464,7 +558,10 @@ if (command === ".menu") {
 ┃ 🏷️ .tagall
 ┃ 🖼️ .sticker
 ┃ 🖼️ .photo
+┃ 👤 .whois
+┃ 👀 .autostatus
 ┃ 👁️ .vv
+┃ 📦 .repo
 ┃ 📜 .menu
 ┃
 ╰══════════════════❍`;
