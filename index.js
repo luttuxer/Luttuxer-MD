@@ -22,7 +22,11 @@ const OWNER_NUMBER =
 
 const ALIVE =
   "_I am alive! (use .setalive help for custom alive msg)_";
+const aliveStore = new Map();
 
+function getAlive(jid) {
+  return aliveStore.get(jid) || ALIVE;
+}
 const STICKER_PACK =
   "";
 
@@ -295,69 +299,169 @@ async function startBot() {
         // PING
         // =====================================
 
-        if (
-          command === ".ping"
-        ) {
-          const start =
-            Date.now();
+     if (command === ".ping") {
+  const start = Date.now();
 
-          await sock.sendMessage(
-            jid,
-            {
-              text:
-                "🏓 Pinging..."
-            }
-          );
+  await sock.sendMessage(
+    jid,
+    {
+      text: "🏓 Pinging..."
+    }
+  );
 
-          const latency =
-            Date.now() - start;
+  const latency = Date.now() - start;
 
-          await sock.sendMessage(
-            jid,
-            {
-              text:
-                `*ʟᴀᴛᴇɴᴄʏ: ${latency.toFixed(
-                  2
-                )} _ᴍs_*`
-            }
-          );
+  await sock.sendMessage(
+    jid,
+    {
+      text: `*☇ ꜱᴩᷨᴇͦᴇͭᴅ 🐼 :* ${latency.toFixed(2)} *ᴍꜱ*`
+    },
+    { quoted: msg }
+  );
 
-          return;
-        }
+  return;
+}
 
-        // =====================================
-        // ALIVE
-        // =====================================
+// =====================================
+// TAGALL
+// =====================================
 
-        if (
-          command === ".alive"
-        ) {
-          await sock.sendMessage(
-            jid,
-            {
-              text: ALIVE
-            },
-            {
-              quoted: msg
-            }
-          );
+if (command === ".tagall") {
+  if (!jid.endsWith("@g.us")) {
+    await sock.sendMessage(
+      jid,
+      { text: "❌ This command is only for groups." },
+      { quoted: msg }
+    );
+    return;
+  }
 
-          return;
-        }
+  const groupMetadata = await sock.groupMetadata(jid);
+  const participants = groupMetadata.participants;
 
-        // =====================================
-        // MENU
-        // =====================================
+  let mentions = [];
+  let tagText = "╭━━━〔 ᴛᴀɢᴀʟʟ 〕━━━╮\n┃\n";
 
-        if (
-          command === ".menu"
-        ) {
-          const menu =
+  for (const member of participants) {
+    mentions.push(member.id);
+    tagText += `┃ 🐼 @${member.id.split("@")[0]}\n`;
+  }
+
+  tagText += "┃\n╰━━━━━━━━━━━━━━━━╯";
+
+  await sock.sendMessage(
+    jid,
+    {
+      text: tagText,
+      mentions: mentions
+    },
+    { quoted: msg }
+  );
+
+  return;
+}
+
+ // =====================================
+// ALIVE
+// =====================================
+
+if (command === ".alive") {
+  await sock.sendMessage(
+    jid,
+    {
+      text: getAlive(jid)
+    },
+    {
+      quoted: msg
+    }
+  );
+
+  return;
+}
+
+// =====================================
+// SETALIVE
+// =====================================
+
+if (command === ".setalive help") {
+  await sock.sendMessage(
+    jid,
+    {
+      text:
+        "╭━━━〔 SETALIVE 〕━━━╮\n" +
+        "┃\n" +
+        "┃ ✦ .setalive <message>\n" +
+        "┃ ✦ .setalive reset\n" +
+        "┃\n" +
+        "╰━━━━━━━━━━━━━━━━━━╯"
+    },
+    {
+      quoted: msg
+    }
+  );
+
+  return;
+}
+
+if (command.startsWith(".setalive ")) {
+  const newAlive = text.trim().slice(9).trim();
+
+  if (!newAlive) {
+    await sock.sendMessage(
+      jid,
+      {
+        text: "❌ Please enter an alive message."
+      },
+      {
+        quoted: msg
+      }
+    );
+    return;
+  }
+
+  if (newAlive.toLowerCase() === "reset") {
+    aliveStore.delete(jid);
+
+    await sock.sendMessage(
+      jid,
+      {
+        text: "✅ Alive message reset!"
+      },
+      {
+        quoted: msg
+      }
+    );
+
+    return;
+  }
+
+  aliveStore.set(jid, newAlive);
+
+  await sock.sendMessage(
+    jid,
+    {
+      text: "✅ Alive message updated!"
+    },
+    {
+      quoted: msg
+    }
+  );
+
+  return;
+}
+
+       // =====================================
+// MENU
+// =====================================
+
+if (command === ".menu") {
+  const menu =
 `╭═══〘 𝙇𝙪𝙩𝙩𝙪𝙭𝙚𝙧 𝙈𝘿 〙═══⊷❍
 ┃
 ┃ 👑 .owner
 ┃ ❤️ .alive
 ┃ 🏓 .ping
+┃ 🏷️ .tagall
 ┃ 🖼️ .sticker
 ┃ 🖼️ .photo
 ┃ 👁️ .vv
@@ -365,18 +469,18 @@ async function startBot() {
 ┃
 ╰══════════════════❍`;
 
-          await sock.sendMessage(
-            jid,
-            {
-              text: menu
-            },
-            {
-              quoted: msg
-            }
-          );
+  await sock.sendMessage(
+    jid,
+    {
+      text: menu
+    },
+    {
+      quoted: msg
+    }
+  );
 
-          return;
-        }
+  return;
+}
 
         // =====================================
         // VV
