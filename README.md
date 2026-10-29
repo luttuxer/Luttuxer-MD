@@ -59,7 +59,7 @@ Never upload WhatsApp authentication files, passwords, API keys, or other privat
 
 ## 👨‍💻 𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧
 
-⏱‹‹ 𝞘𝞵𝞽⃕͜𝞽𝞴𝞺⃕𝞺𝞲 𝞭𝞮⃕͜𝟆 ↲ 🈀🥕
+-` 𝐋𝛖𝛕𝛕𝛂𝛒𝛊／🌷💭⭒𐂂  
 
 ---
 
