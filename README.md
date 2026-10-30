@@ -56,13 +56,28 @@ node index.js
 Never upload WhatsApp authentication files, passwords, API keys, or other private credentials to GitHub.
 
 ---
+## 👨🏻‍💻 Developer
 
-## 👨‍💻 𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧
+<p align="center">
+  <b>𝐋𝛖𝛕𝛕𝛂𝛒𝛊／🌷💭⭒𐂂</b>
+</p>
 
--` 𝐋𝛖𝛕𝛕𝛂𝛒𝛊／🌷💭⭒𐂂  
+## 🔗 Connect With Me
+
+<p align="center">
+  <a href="https://wa.me/917907914657">
+    <img src="https://img.shields.io/badge/WhatsApp-Contact-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
+  </a>
+  <a href="https://t.me/luttappiser">
+    <img src="https://img.shields.io/badge/Telegram-Connect-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/>
+  </a>
+  <a href="https://www.instagram.com/who.__iam_._/">
+    <img src="https://img.shields.io/badge/Instagram-Follow-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
+  </a>
+</p>
 
 ---
 
 <p align="center">
-  𝙈𝙖𝙙𝙚 𝙬𝙞𝙩𝙝 🤍 𝙗𝙮 𝙇𝙪𝙩𝙩𝙪𝙭𝙚𝙧 𝙈𝘿
+  Made with -` 𝐋𝛖𝛕𝛕𝛂𝛒𝛊／🌷💭⭒𐂂  
 </p>
